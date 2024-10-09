@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Note } from "@/types/types"; // Import the Note type
+import MonacoEditor from "./MonacoEditor";
 
 const NoteList: React.FC<{
   notes: Note[];
@@ -28,8 +29,17 @@ const NoteList: React.FC<{
     <ul>
       {notes.map((note) => (
         <li key={note._id}>
-          {note.content}
-          <button onClick={() => handleDelete(note._id)}>Delete</button>
+          <div className="w-full flex justify-center">
+            <MonacoEditor value={note.example} />
+          </div>
+          {note.example}
+
+          <button
+            className="bg-red-700 rounded-lg p-2 mx-4"
+            onClick={() => handleDelete(note._id)}
+          >
+            Delete
+          </button>
         </li>
       ))}
     </ul>
